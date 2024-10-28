@@ -1,19 +1,24 @@
 // src/AppNavigator.tsx
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import LogoScreen from './screens/HomeScreen';  
+import HomeScreen from './screens/HomeScreen';
+import LoginScreen from './screens/LoginScreen';
 
 const Stack = createStackNavigator();
 
 const AppNavigator: React.FC = () => {
   return (
-    <Stack.Navigator initialRouteName="Logo">
+    <Stack.Navigator initialRouteName="Home">
       <Stack.Screen 
-        name="Logo" 
-        component={LogoScreen} 
+        name="Home" 
+        component={HomeScreen} 
         options={{ headerShown: false }} 
       />
-      {/* You can add more screens here in the future */}
+      <Stack.Screen 
+        name="Login" 
+        component={LoginScreen} 
+        options={{ headerShown: false }} 
+      />
     </Stack.Navigator>
   );
 };
