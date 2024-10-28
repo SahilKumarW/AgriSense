@@ -14,74 +14,64 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
 
   return (
     <View style={styles.container}>
-      {/* Illustration */}
       <Image
-        source={require('../../assets/login-illustration.png')} // Replace with your image path
+        source={require('../../assets/login-illustration.png')}
         style={styles.illustration}
       />
 
-      {/* Header */}
-      <Text style={styles.header}>Log In</Text>
-      <Text style={styles.subHeader}>Please sign in to continue</Text>
+      <View style={styles.contentContainer}>
+        <Text style={styles.header}>Log In</Text>
+        <Text style={styles.subHeader}>Please sign in to continue</Text>
 
-      {/* Email Input */}
-      <View style={styles.inputContainer}>
-        <Icon name="email-outline" size={24} color="#aaa" style={styles.icon} />
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-          autoCapitalize="none"
-        />
-      </View>
-
-      {/* Password Input */}
-      <View style={styles.inputContainer}>
-        <Icon name="lock-outline" size={24} color="#aaa" style={styles.icon} />
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          secureTextEntry={!showPassword}
-          value={password}
-          onChangeText={setPassword}
-          autoCapitalize="none"
-        />
-        <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-          <Icon
-            name={showPassword ? "eye-outline" : "eye-off-outline"}
-            size={24}
-            color="#aaa"
+        <View style={styles.inputContainer}>
+          <Icon name="email-outline" size={24} color="#aaa" style={styles.icon} />
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
           />
+        </View>
+
+        <View style={styles.inputContainer}>
+          <Icon name="lock-outline" size={24} color="#aaa" style={styles.icon} />
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            secureTextEntry={!showPassword}
+            value={password}
+            onChangeText={setPassword}
+            autoCapitalize="none"
+          />
+          <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+            <Icon name={showPassword ? "eye-outline" : "eye-off-outline"} size={24} color="#aaa" />
+          </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity onPress={() => alert('Forgot Password')}>
+          <Text style={styles.forgotPassword}>Forgot Password</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity style={styles.loginButton} onPress={() => alert('Log In')}>
+          <Text style={styles.loginButtonText}>Log in</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.orText}>or sign in with</Text>
+        <View style={styles.socialContainer}>
+          <TouchableOpacity style={styles.socialButton}>
+            <Icon name="facebook" size={24} color="#3b5998" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialButton}>
+            <Icon name="google" size={24} color="#db4437" />
+          </TouchableOpacity>
+        </View>
       </View>
 
-      {/* Forgot Password */}
-      <TouchableOpacity onPress={() => alert('Forgot Password')}>
-        <Text style={styles.forgotPassword}>Forgot Password</Text>
-      </TouchableOpacity>
-
-      {/* Log In Button */}
-      <TouchableOpacity style={styles.loginButton} onPress={() => alert('Log In')}>
-        <Text style={styles.loginButtonText}>Log in</Text>
-      </TouchableOpacity>
-
-      {/* Or Sign in with */}
-      <Text style={styles.orText}>or sign in with</Text>
-      <View style={styles.socialContainer}>
-        <TouchableOpacity style={styles.socialButton}>
-          <Icon name="facebook" size={24} color="#3b5998" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.socialButton}>
-          <Icon name="google" size={24} color="#db4437" />
-        </TouchableOpacity>
-      </View>
-
-      {/* Sign Up Link */}
       <View style={styles.signupContainer}>
-        <Text style={styles.signupText}>Don’t have an account?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+        <Text style={styles.signupText}>Don't have an account?</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('SignUpScreen')}>
           <Text style={styles.signupLink}> Sign up</Text>
         </TouchableOpacity>
       </View>
@@ -94,13 +84,17 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     backgroundColor: '#fff',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
   illustration: {
     width: 150,
     height: 150,
     alignSelf: 'center',
-    marginBottom: 30,
+    marginTop: 30,
+  },
+  contentContainer: {
+    flex: 1,
+    justifyContent: 'center',
   },
   header: {
     fontSize: 28,
@@ -164,6 +158,7 @@ const styles = StyleSheet.create({
   signupContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
+    marginBottom: 30,
   },
   signupText: {
     color: '#888',
